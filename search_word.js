@@ -1,3 +1,5 @@
+var zepto = require('zepto-browserify');
+var $ = zepto.$;
 
 function getSelectionCoords(win) {
     win = win || window;
@@ -54,9 +56,10 @@ if (sel.anchorNode != null) {
     sel = sel.toString();
     console.log('wololo')
 
-    var p1 = 'scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no'
-    var p2 = 'width=0,height=0,left=-1000,top=-1000'
-    open('/', 'test', p1+p2)
+    var container = document.createElement('div')
+    container.innerHTML = '<p>hi</p>'
+    container.className = 'hackdediccionario'
+    document.body.appendChild(container)
 
 
     //console.log(getSelectionCoords());

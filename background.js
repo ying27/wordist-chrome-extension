@@ -1,5 +1,5 @@
 var actions = {
-  'search-def': 'search_word.js'
+  'search-def': 'build.js'
 }
 
 function performCommand (tab, command) {

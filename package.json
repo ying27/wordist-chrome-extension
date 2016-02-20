@@ -1,0 +1,26 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify search_word.js -o build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ying27/wordist-chrome-extension.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ying27/wordist-chrome-extension/issues"
+  },
+  "homepage": "https://github.com/ying27/wordist-chrome-extension#readme",
+  "dependencies": {
+    "zepto-browserify": "^1.1.6-1"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0"
+  }
+}
