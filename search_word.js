@@ -52,16 +52,26 @@ function getSelectionCoords (win) {
 var sel = window.getSelection();
 
 if (sel.anchorNode != null) {
-  sel = sel.toString();
+    sel = sel.toString();
 
-  var container = document.createElement('div');
-  container.innerHTML = "<p class='searchedWord'>" + sel +
-    "</p><hr/><p class='wordDefinition'>be or remain hidden so as to wait in ambush for someone or something.</p>";
-  container.className = 'hackdediccionario';
-  document.body.appendChild(container);
+    var re = new XMLHttpRequest();
+    re.open('POST', 'http://localhost:8080/api/word', false);
+    re.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    re.send(JSON.stringify({email:"florrts@gmail.com", word:sel}));
 
-  setTimeout(function () {
-    $('.hackdediccionario').remove();
-  }, 8000);
+    console.log(re.status);
+    if (re.status == 200){
+
+        var container = document.createElement('div');
+        container.innerHTML = "<p class='searchedWord'>" + sel +
+            "</p><hr/><p class='wordDefinition'>" + re.responseText + "</p>";
+        container.className = 'hackdediccionario';
+        document.body.appendChild(container);
+
+        setTimeout(function () {
+            $('.hackdediccionario').remove();
+        }, 8000);
+
+    }
 // console.log(getSelectionCoords());
 }
