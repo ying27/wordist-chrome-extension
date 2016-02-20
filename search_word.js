@@ -52,39 +52,51 @@ function getSelectionCoords (win) {
 var sel = window.getSelection();
 
 if (sel.anchorNode != null) {
-    /*
-    var container = document.createElement('div');
-    sel = sel.toString();
-    container.innerHTML = "<p class='searchedWord'>" + sel +
-        "</p><hr/><p class='wordDefinition'>Loading...</p>";
-    container.className = 'hackdediccionario';
-    document.body.appendChild(container);
-    */
+  /*
+  var container = document.createElement('div');
+  sel = sel.toString();
+  container.innerHTML = "<p class='searchedWord'>" + sel +
+      "</p><hr/><p class='wordDefinition'>Loading...</p>";
+  container.className = 'hackdediccionario';
+  document.body.appendChild(container);
+  */
 
-    var re = new XMLHttpRequest();
-    re.open('POST', 'http://wordist.herokuapp.com/api/word', false);
-    re.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    re.send(JSON.stringify({email:"florrts@gmail.com", word:sel}));
-
-    if (re.status == 200){
+  var re = new XMLHttpRequest();
+  re.open('POST', 'http://wordist.herokuapp.com/api/word', true);
+  re.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+  re.onload = function (e) {
+    if (re.readyState === 4) {
+      if (re.status === 200) {
         console.log(re.responseText);
-        var defs = re.responseText.split('\n');
-        /*
-        defs.forEach(function(section){
-            console.log(section);
-        });
-        */
-        /*
-        var container = document.createElement('div');
-        container.innerHTML = "<p class='searchedWord'>" + sel +
-            "</p><hr/><p class='wordDefinition'>" + re.responseText + "</p>";
-        container.className = 'hackdediccionario';
-        document.body.appendChild(container);
-
-        setTimeout(function () {
-            $('.hackdediccionario').remove();
-        }, 8000);
-        */
+      } else {
+        console.error(re.statusText);
+      }
     }
+  };
+  re.onerror = function (e) {
+    console.error(re.statusText);
+  };
+  re.send(JSON.stringify({email: 'florrts@gmail.com', word: sel}));
+
+  if (re.status == 200) {
+    console.log(re.responseText);
+    var defs = re.responseText.split('\n');
+  /*
+  defs.forEach(function(section){
+      console.log(section);
+  });
+  */
+  /*
+  var container = document.createElement('div');
+  container.innerHTML = "<p class='searchedWord'>" + sel +
+      "</p><hr/><p class='wordDefinition'>" + re.responseText + "</p>";
+  container.className = 'hackdediccionario';
+  document.body.appendChild(container);
+
+  setTimeout(function () {
+      $('.hackdediccionario').remove();
+  }, 8000);
+  */
+  }
 // console.log(getSelectionCoords());
 }
