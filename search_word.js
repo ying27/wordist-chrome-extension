@@ -66,7 +66,7 @@ if (sel.anchorNode != null) {
 
     var re = new XMLHttpRequest();
     //re.open('POST', 'http://wordist.herokuapp.com/api/word', true);
-    re.open('POST', 'http://127.0.0.1:8080/api/word', true);
+    re.open('POST', 'http://wordist.herokuapp.com/api/word', true);
     re.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
     re.onload = function (e) {
     if (re.readyState === 4) {
