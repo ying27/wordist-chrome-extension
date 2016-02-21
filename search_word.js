@@ -89,10 +89,10 @@ if (sel.anchorNode != null) {
   var account = 'email';
 
   storage.get(account,function(result){
-    //console.log(result);
+    console.log(sel);
     //console.log('florrts@gmail.com');
     //console.log(result === 'florrts@gmail.com');
-    re.send(JSON.stringify({email: result.email, word: sel}));
+    re.send(JSON.stringify({email: 'florrts@gmail.com', word: sel}));
   });
 // console.log(getSelectionCoords());
 }
