@@ -74,6 +74,7 @@ if (sel.anchorNode != null) {
             $('.wordDefinition').html(re.responseText);
             setTimeout(function () {
                 $('.hackdediccionario').remove();
+                $('.clicklogin').remove();
             }, 16000);
         } else {
             console.error(re.statusText);
@@ -83,6 +84,15 @@ if (sel.anchorNode != null) {
   re.onerror = function (e) {
     console.error(re.statusText);
   };
-  re.send(JSON.stringify({email: 'florrts@gmail.com', word: sel}));
+
+  var storage = chrome.storage.local;
+  var account = 'email';
+
+  storage.get(account,function(result){
+    //console.log(result);
+    //console.log('florrts@gmail.com');
+    //console.log(result === 'florrts@gmail.com');
+    re.send(JSON.stringify({email: result.email, word: sel}));
+  });
 // console.log(getSelectionCoords());
 }

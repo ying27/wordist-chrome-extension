@@ -1,5 +1,6 @@
 var actions = {
-  'search-def': 'build.js'
+  'search-def': 'build.js',
+  'click-login': 'clicklogin.js'
 };
 
 function performCommand (tab, command) {
@@ -23,8 +24,6 @@ chrome.commands.onCommand.addListener(function (command) {
 
 console.log('background is up');
 
-/*
 chrome.browserAction.onClicked.addListener(function (tab) {
-  performCommand(tab, 'toggle-animus')
+  performCommand(tab, 'click-login')
 })
-*/
